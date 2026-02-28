@@ -4,7 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Stop losing roofing jobs to companies that do worse work than you. Katalux Marketing as a Service - Your predictable lead generation system for DFW roofers.">
-    <title>Katalux - Stop Losing Roofing Jobs | Marketing as a Service for DFW Roofers</title>
+        <title>Katalux - Stop Losing Roofing Jobs | Marketing as a Service for DFW Roofers</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLE9YV1FQQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JLE9YV1FQQ');
+        
+        // Track form submissions
+        window.addEventListener('load', function() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function() {
+                    gtag('event', 'form_submit', {
+                        'event_category': 'Lead Generation',
+                        'event_label': 'Contact Form',
+                        'value': 1
+                    });
+                });
+            });
+        });
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
