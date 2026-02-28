@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.disabled = true;
             
             // Submit to Formspree (free email forwarding service)
-            fetch('https://formspree.io/f/xbljawwe', {
+            fetch('https://formspree.io/f/mdaljqez', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
