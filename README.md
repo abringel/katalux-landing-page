@@ -1,2 +1,7 @@
-# katalux-landing-page
-Landing page for Katalux - Marketing as a Service for DFW Roofers
+# Katalux - Marketing as a Service for DFW Roofers
+
+**Live Site:** https://www.katalux.agency  
+**Staging URL:** https://katalux-landing-page.vercel.app
+
+## 🎯 Project Overview
+...
