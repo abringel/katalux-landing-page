@@ -178,61 +178,63 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = 'Submitting...';
             submitButton.disabled = true;
             
-            // Simulate API call (replace with your actual endpoint)
-            setTimeout(() => {
-                console.log('Form submitted:', {
-                    name,
-                    company,
-                    phone,
-                    email,
+            // Submit to Formspree (free email forwarding service)
+            fetch('https://formspree.io/f/xbljawwe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    company: company,
+                    phone: phone,
+                    email: email,
+                    _subject: `New Lead from Katalux Landing Page - ${company}`,
+                    _replyto: email,
                     timestamp: new Date().toISOString()
-                });
-                
-                // Show success message
-                const successMessage = document.createElement('div');
-                successMessage.style.cssText = `
-                    position: fixed;
-                    top: 100px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: #10B981;
-                    color: white;
-                    padding: 20px 40px;
-                    border-radius: 8px;
-                    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-                    z-index: 10000;
-                    font-family: 'Montserrat', sans-serif;
-                    font-weight: 600;
-                    font-size: 1.1rem;
-                `;
-                successMessage.textContent = '✓ Thanks! We\'ll contact you within 24 hours.';
-                document.body.appendChild(successMessage);
-                
-                // Reset form
-                form.reset();
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.style.cssText = `
+                        position: fixed;
+                        top: 100px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: #10B981;
+                        color: white;
+                        padding: 20px 40px;
+                        border-radius: 8px;
+                        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+                        z-index: 10000;
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                    `;
+                    successMessage.textContent = '✓ Thanks! We\'ll contact you within 24 hours.';
+                    document.body.appendChild(successMessage);
+                    
+                    // Reset form
+                    form.reset();
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 5000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Form submission error:', error);
+                alert('Sorry, there was an error submitting your form. Please email us directly at katalux.roofing@gmail.com');
                 submitButton.textContent = originalButtonText;
                 submitButton.disabled = false;
-                
-                // Remove success message after 5 seconds
-                setTimeout(() => {
-                    successMessage.remove();
-                }, 5000);
-                
-                // TODO: Replace console.log with actual form submission
-                // Example using Formspree:
-                // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-                //     method: 'POST',
-                //     body: formData,
-                //     headers: {
-                //         'Accept': 'application/json'
-                //     }
-                // }).then(response => {
-                //     if (response.ok) {
-                //         // Success handling
-                //     }
-                // });
-                
-            }, 1000);
+            });
         });
     }
     
@@ -279,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ================================
     console.log('%c🔥 KATALUX - Marketing as a Service', 'color: #F59E0B; font-size: 24px; font-weight: bold;');
     console.log('%cWe don\'t create the gold. We reveal it.', 'color: #0D9488; font-size: 16px; font-style: italic;');
-    console.log('%cInterested in working with us? Email: hello@katalux.agency', 'color: #0A1628; font-size: 14px;');
+    console.log('%cInterested in working with us? Email: katalux.roofing@gmail.com', 'color: #0A1628; font-size: 14px;');
     
 });
 
